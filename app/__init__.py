@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_bootstrap import Bootstrap5
 
 from config import Config
 from app.extensions import db
@@ -6,6 +7,8 @@ from app.extensions import db
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
+
+    bootstrap = Bootstrap5(app)
 
     # Initialize Flask extensions here
     db.init_app(app)
@@ -17,8 +20,7 @@ def create_app(config_class=Config):
     from app.posts import bp as posts_bp
     app.register_blueprint(posts_bp, url_prefix='/posts')
 
-    @app.route('/test/')
-    def test_page():
-        return '<h1>Testing the Flask Application Factory Pattern</h1>'
+    from app.forms import bp as form_bp
+    app.register_blueprint(form_bp, url_prefix='/forms')
 
     return app

@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <title>{% block title %} {% endblock %} - FlaskApp</title>
     <link rel="stylesheet" type= "text/css" href= "{{ url_for('static', filename='styles/style.css') }}">
+    {{ bootstrap.load_css() }}
 </head>
 <body>
     <nav>
-        <a href="{{ url_for('main.index') }}">FlaskApp</a>
-        <a href="{{ url_for('posts.index') }}">Posts</a>
-        <a href="#">Categories</a>
-        <a href="#">Questions</a>
+    <nav class="nav nav-pills flex-column flex-sm-row">
+        <a class="flex-sm-fill text-sm-center nav-link" aria-current="page" href="{{ url_for('main.index') }}">FlaskApp</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="{{ url_for('posts.index') }}">Posts</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="{{ url_for('forms.feedback') }}">Feedback</a>
     </nav>
     <hr>
     <div class="content">
         {% block content %} {% endblock %}
     </div>
+    {{ bootstrap.load_js() }}
 </body>
 </html>
