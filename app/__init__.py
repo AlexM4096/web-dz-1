@@ -22,7 +22,5 @@ def create_app(config_class=Config):
 
     from app.forms import bp as form_bp
     app.register_blueprint(form_bp, url_prefix='/')
-    
-    print(app.config["SECRET_KEY"])
 
     return app
